@@ -9,18 +9,19 @@ public class QuadranteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @OneToMany(mappedBy = "quadrante")
+    private int id_qua;
 
     @Column(name = "desc")
     @NotNull
     private String desc;
 
-    public int getId() {
-        return id;
+    public int getId_qua() {
+        return id_qua;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_qua(int id_qua) {
+        this.id_qua = id_qua;
     }
 
     public String getDesc() {

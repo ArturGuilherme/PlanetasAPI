@@ -10,7 +10,8 @@ public class ClasseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @OneToMany(mappedBy = "classe")
+    private int id_cla;
 
     @Column(name = "desc")
     @NotNull
@@ -20,12 +21,20 @@ public class ClasseEntity {
     @NotNull
     private char classe;
 
-    public int getId() {
-        return id;
+    public int getId_cla() {
+        return id_cla;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_cla(int id_cla) {
+        this.id_cla = id_cla;
+    }
+
+    public char getClasse() {
+        return classe;
+    }
+
+    public void setClasse(char classe) {
+        this.classe = classe;
     }
 
     public String getDesc() {

@@ -25,8 +25,8 @@ public class PlanetaEntity {
     @NotNull
     private ClasseEntity classe;
 
-    @ManyToOne()
-    @JoinColumn(name ="id_tipo")
+    @ManyToOne
+    @JoinColumn(name ="id_tip")
     @NotNull
     private TipoAtmoEntity tipoAtmo;
 
@@ -39,7 +39,7 @@ public class PlanetaEntity {
     private Date data;
 
     @ManyToOne
-    @JoinColumn(name ="id_quadrante")
+    @JoinColumn(name ="id_qua")
     @NotNull
     private QuadranteEntity quadrante;
 
