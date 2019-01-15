@@ -1,111 +1,125 @@
 package br.com.arturguilherme.planeta.api.entity;
 
+import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+
+/**
+ * The persistent class for the planeta database table.
+ * 
+ */
 @Entity
 @Table(name="planeta")
-public class PlanetaEntity {
+@NamedQuery(name="Planeta.findAll", query="SELECT p FROM PlanetaEntity p")
+public class PlanetaEntity implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@Id
+	@Column(name="id_planeta")
+	private int idPlaneta;
 
-    @Column(name = "nome")
-    @NotNull
-    private String nome;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="data_descobrimento")
+	private Date dataDescobrimento;
 
-    @Column(name = "diametro")
-    @NotNull
-    private String diametro;
+	private int diametro;
 
-    @ManyToOne
-    @JoinColumn(name ="id_cla")
-    @NotNull
-    private ClasseEntity classe;
+	private int massa;
 
-    @ManyToOne
-    @JoinColumn(name ="id_tip")
-    @NotNull
-    private TipoAtmoEntity tipoAtmo;
+	private String nome;
 
-    @Column(name = "colonizado")
-    @NotNull
-    private boolean colonizado;
+	@Column(name="planeta_colonizado")
+	private byte planetaColonizado;
 
-    @Column(name = "data")
-    @NotNull
-    private Date data;
+	//bi-directional many-to-one association to ClassePlaneta
+	@ManyToOne
+	@JoinColumn(name="id_classe")
+	private ClassePlanetaEntity classePlanetaEntity;
 
-    @ManyToOne
-    @JoinColumn(name ="id_qua")
-    @NotNull
-    private QuadranteEntity quadrante;
+	//bi-directional many-to-one association to TipoAtmosfera
+	@ManyToOne
+	@JoinColumn(name="id_tipo_atmosfera")
+	private TipoAtmosferaEntity tipoAtmosferaEntity;
 
+	//bi-directional many-to-one association to QuadranteEstelar
+	@ManyToOne
+	@JoinColumn(name="id_quadrante")
+	private QuadranteEstelarEntity quadranteEstelarEntity;
 
-    public int getId() {
-        return id;
-    }
+	public PlanetaEntity() {
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getIdPlaneta() {
+		return this.idPlaneta;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setIdPlaneta(int idPlaneta) {
+		this.idPlaneta = idPlaneta;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public Date getDataDescobrimento() {
+		return this.dataDescobrimento;
+	}
 
-    public String getDiametro() {
-        return diametro;
-    }
+	public void setDataDescobrimento(Date dataDescobrimento) {
+		this.dataDescobrimento = dataDescobrimento;
+	}
 
-    public void setDiametro(String diametro) {
-        this.diametro = diametro;
-    }
+	public int getDiametro() {
+		return this.diametro;
+	}
 
+	public void setDiametro(int diametro) {
+		this.diametro = diametro;
+	}
 
-    public boolean isColonizado() {
-        return colonizado;
-    }
+	public int getMassa() {
+		return this.massa;
+	}
 
-    public void setColonizado(boolean colonizado) {
-        this.colonizado = colonizado;
-    }
+	public void setMassa(int massa) {
+		this.massa = massa;
+	}
 
-    public Date getData() {
-        return data;
-    }
+	public String getNome() {
+		return this.nome;
+	}
 
-    public void setData(Date data) {
-        this.data = data;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public ClasseEntity getClasse() {
-        return classe;
-    }
+	public byte getPlanetaColonizado() {
+		return this.planetaColonizado;
+	}
 
-    public void setClasse(ClasseEntity classe) {
-        this.classe = classe;
-    }
+	public void setPlanetaColonizado(byte planetaColonizado) {
+		this.planetaColonizado = planetaColonizado;
+	}
 
-    public TipoAtmoEntity getTipoAtmo() {
-        return tipoAtmo;
-    }
+	public ClassePlanetaEntity getClassePlaneta() {
+		return this.classePlanetaEntity;
+	}
 
-    public void setTipoAtmo(TipoAtmoEntity tipoAtmo) {
-        this.tipoAtmo = tipoAtmo;
-    }
+	public void setClassePlaneta(ClassePlanetaEntity classePlanetaEntity) {
+		this.classePlanetaEntity = classePlanetaEntity;
+	}
 
-    public QuadranteEntity getQuadrante() {
-        return quadrante;
-    }
+	public TipoAtmosferaEntity getTipoAtmosfera() {
+		return this.tipoAtmosferaEntity;
+	}
 
-    public void setQuadrante(QuadranteEntity quadrante) {
-        this.quadrante = quadrante;
-    }
+	public void setTipoAtmosfera(TipoAtmosferaEntity tipoAtmosferaEntity) {
+		this.tipoAtmosferaEntity = tipoAtmosferaEntity;
+	}
+
+	public QuadranteEstelarEntity getQuadranteEstelar() {
+		return this.quadranteEstelarEntity;
+	}
+
+	public void setQuadranteEstelar(QuadranteEstelarEntity quadranteEstelarEntity) {
+		this.quadranteEstelarEntity = quadranteEstelarEntity;
+	}
+
 }
