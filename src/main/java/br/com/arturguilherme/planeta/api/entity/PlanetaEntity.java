@@ -30,7 +30,7 @@ public class PlanetaEntity implements Serializable {
 	private String nome;
 
 	@Column(name="planeta_colonizado")
-	private byte planetaColonizado;
+	private boolean planetaColonizado;
 
 	//bi-directional many-to-one association to ClassePlaneta
 	@ManyToOne
@@ -90,11 +90,11 @@ public class PlanetaEntity implements Serializable {
 		this.nome = nome;
 	}
 
-	public byte getPlanetaColonizado() {
+	public boolean getPlanetaColonizado() {
 		return this.planetaColonizado;
 	}
 
-	public void setPlanetaColonizado(byte planetaColonizado) {
+	public void setPlanetaColonizado(boolean planetaColonizado) {
 		this.planetaColonizado = planetaColonizado;
 	}
 

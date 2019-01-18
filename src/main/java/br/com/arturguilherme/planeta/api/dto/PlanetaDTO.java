@@ -6,8 +6,8 @@ public class PlanetaDTO {
 
     private int id;
     private String nome;
-    private String diametro;
-    private char classe;
+    private int diametro;
+    private String classe;
     private int tipoAtmo;
     private boolean colonizado;
     private Date data;
@@ -29,19 +29,19 @@ public class PlanetaDTO {
         this.nome = nome;
     }
 
-    public String getDiamentro() {
+    public int getDiamentro() {
         return diametro;
     }
 
-    public void setDiamentro(String diamentro) {
+    public void setDiamentro(int diamentro) {
         this.diametro = diamentro;
     }
 
-    public char getClasse() {
+    public String getClasse() {
         return classe;
     }
 
-    public void setClasse(char classe) {
+    public void setClasse(String classe) {
         this.classe = classe;
     }
 
