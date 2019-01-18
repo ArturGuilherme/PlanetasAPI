@@ -4,13 +4,14 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
+
 /**
  * The persistent class for the classe_planeta database table.
  * 
  */
 @Entity
 @Table(name="classe_planeta")
-@NamedQuery(name="ClassePlanetaEntity.findAll", query="SELECT c FROM ClassePlanetaEntity c")
+@NamedQuery(name="ClassePlaneta.findAll", query="SELECT c FROM ClassePlanetaEntity c")
 public class ClassePlanetaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 

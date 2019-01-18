@@ -37,15 +37,15 @@ public class PlanetaEntity implements Serializable {
 	@JoinColumn(name="id_classe")
 	private ClassePlanetaEntity classePlanetaEntity;
 
-	//bi-directional many-to-one association to TipoAtmosfera
-	@ManyToOne
-	@JoinColumn(name="id_tipo_atmosfera")
-	private TipoAtmosferaEntity tipoAtmosferaEntity;
-
 	//bi-directional many-to-one association to QuadranteEstelar
 	@ManyToOne
 	@JoinColumn(name="id_quadrante")
 	private QuadranteEstelarEntity quadranteEstelarEntity;
+
+	//bi-directional many-to-one association to TipoAtmosfera
+	@ManyToOne
+	@JoinColumn(name="id_tipo_atmosfera")
+	private TipoAtmosferaEntity tipoAtmosferaEntity;
 
 	public PlanetaEntity() {
 	}
@@ -106,20 +106,20 @@ public class PlanetaEntity implements Serializable {
 		this.classePlanetaEntity = classePlanetaEntity;
 	}
 
-	public TipoAtmosferaEntity getTipoAtmosfera() {
-		return this.tipoAtmosferaEntity;
-	}
-
-	public void setTipoAtmosfera(TipoAtmosferaEntity tipoAtmosferaEntity) {
-		this.tipoAtmosferaEntity = tipoAtmosferaEntity;
-	}
-
 	public QuadranteEstelarEntity getQuadranteEstelar() {
 		return this.quadranteEstelarEntity;
 	}
 
 	public void setQuadranteEstelar(QuadranteEstelarEntity quadranteEstelarEntity) {
 		this.quadranteEstelarEntity = quadranteEstelarEntity;
+	}
+
+	public TipoAtmosferaEntity getTipoAtmosfera() {
+		return this.tipoAtmosferaEntity;
+	}
+
+	public void setTipoAtmosfera(TipoAtmosferaEntity tipoAtmosferaEntity) {
+		this.tipoAtmosferaEntity = tipoAtmosferaEntity;
 	}
 
 }
