@@ -1,5 +1,6 @@
-package br.com.arturguilherme.planeta.api.facade;
+package br.com.arturguilherme.planeta.api.service.facade.Impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,18 +10,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.arturguilherme.planeta.api.dto.PlanetaDTO;
 import br.com.arturguilherme.planeta.api.service.PlanetaService;
+import br.com.arturguilherme.planeta.api.service.facade.ServiceFacade;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class ServiceFacadeImpl implements ServiceFacade{
+public class ServiceFacadeImpl implements ServiceFacade {
 
 	@Autowired
 	private PlanetaService planetaService;
 
-	@Override
+		@Override
 	public List<PlanetaDTO> listarTodosPlanetas() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		 return planetaService.listarTodosPlanetas();
+
 	}
 
 	@Override
@@ -82,10 +85,5 @@ public class ServiceFacadeImpl implements ServiceFacade{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	
-	
-	
 
 }

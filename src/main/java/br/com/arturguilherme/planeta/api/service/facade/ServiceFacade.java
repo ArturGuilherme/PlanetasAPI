@@ -1,4 +1,4 @@
-package br.com.arturguilherme.planeta.api.facade;
+package br.com.arturguilherme.planeta.api.service.facade;
 
 import java.util.Date;
 import java.util.List;

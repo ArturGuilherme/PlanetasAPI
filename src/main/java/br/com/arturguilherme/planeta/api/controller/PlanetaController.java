@@ -1,7 +1,6 @@
 package br.com.arturguilherme.planeta.api.controller;
-import br.com.arturguilherme.planeta.api.service.PlanetaService;
+import br.com.arturguilherme.planeta.api.service.facade.ServiceFacade;
 import br.com.arturguilherme.planeta.api.dto.PlanetaDTO;
-import br.com.arturguilherme.planeta.api.facade.ServiceFacade;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,6 @@ public class PlanetaController {
 
     @Autowired
     private ServiceFacade serviceFacade;
-
     @RequestMapping(value = "/listar",produces = {"application/json"},method = RequestMethod.GET)
     public ResponseEntity<?> listarTodos(){
 

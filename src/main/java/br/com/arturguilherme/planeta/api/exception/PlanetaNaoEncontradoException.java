@@ -2,8 +2,8 @@ package br.com.arturguilherme.planeta.api.exception;
 
 public class PlanetaNaoEncontradoException extends Exception {
 	
-private static final long serialVersionUID = 614687643365114697L;
-	
+	private static final long serialVersionUID = 614687643365114697L;
+
 	public PlanetaNaoEncontradoException(String message) {
         super(message);
 		
