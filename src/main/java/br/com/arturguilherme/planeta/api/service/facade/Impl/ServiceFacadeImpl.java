@@ -21,15 +21,15 @@ public class ServiceFacadeImpl implements ServiceFacade {
 
 		@Override
 	public List<PlanetaDTO> listarTodosPlanetas() throws Exception {
-		// TODO Auto-generated method stub
+		
 		 return planetaService.listarTodosPlanetas();
 
 	}
 
 	@Override
 	public PlanetaDTO listarPlanetaId(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return planetaService.listarPlanetaId(id);
 	}
 
 	@Override

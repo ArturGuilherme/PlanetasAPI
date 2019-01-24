@@ -11,23 +11,25 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlanetaServiceImpl implements PlanetaService {
 
 	@Autowired
 	private PlanetaRepository planetaRepository;
-	
-    @Override
-    public List<PlanetaDTO> listarTodosPlanetas() throws Exception {
 
-        List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
-        
-        Iterable<PlanetaEntity> iterable = planetaRepository.findAll();
+	@Override
+	public List<PlanetaDTO> listarTodosPlanetas() throws Exception {
 
-        iterable.forEach(planetaEntity->{
-			
-        	PlanetaDTO planetaDTO = new PlanetaDTO();
+		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+
+		Iterable<PlanetaEntity> iterable = planetaRepository.findAll();
+
+		iterable.forEach(planetaEntity -> {
+
+			PlanetaDTO planetaDTO = new PlanetaDTO();
+
 			planetaDTO.setId(planetaEntity.getIdPlaneta());
 			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
 			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
@@ -36,24 +38,61 @@ public class PlanetaServiceImpl implements PlanetaService {
 			planetaDTO.setNome(planetaEntity.getNome());
 			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
 			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
-			
+
 			planetas.add(planetaDTO);
 		});
-        
+
 		return planetas;
 
-    }
+	}
 
 	@Override
 	public PlanetaDTO listarPlanetaId(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+		Optional<PlanetaEntity> planetaEntity = planetaRepository.findById(id);
+
+		PlanetaDTO planetaDTO = new PlanetaDTO();
+
+		planetaDTO.setId(planetaEntity.get().getIdPlaneta());
+		planetaDTO.setClasse(planetaEntity.get().getClassePlaneta().getIdClasse());
+		planetaDTO.setColonizado(planetaEntity.get().getPlanetaColonizado());
+		planetaDTO.setData(planetaEntity.get().getDataDescobrimento());
+		planetaDTO.setDiamentro(planetaEntity.get().getDiametro());
+		planetaDTO.setNome(planetaEntity.get().getNome());
+		planetaDTO.setQuadrante(planetaEntity.get().getQuadranteEstelar().getIdQuadrante());
+		planetaDTO.setTipoAtmo(planetaEntity.get().getTipoAtmosfera().getIdTipoAtmosfera());
+
+		return planetaDTO;
+
 	}
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasClasse(String classeID) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+		
+		PlanetaDTO teste = new PlanetaDTO();
+		
+		Iterable<PlanetaEntity> iterable = planetaRepository.findAll();
+
+		iterable.forEach(planetaEntity -> {
+
+			PlanetaDTO planetaDTO = new PlanetaDTO();
+
+			planetaDTO.setId(planetaEntity.getIdPlaneta());
+			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
+			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
+			planetaDTO.setData(planetaEntity.getDataDescobrimento());
+			planetaDTO.setDiamentro(planetaEntity.getDiametro());
+			planetaDTO.setNome(planetaEntity.getNome());
+			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
+			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
+
+			planetas.add(planetaDTO);
+		});
+
+		return planetas;
+
 	}
 
 	@Override
