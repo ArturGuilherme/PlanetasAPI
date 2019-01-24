@@ -73,7 +73,8 @@ public class PlanetaServiceImpl implements PlanetaService {
 		
 		PlanetaDTO teste = new PlanetaDTO();
 		
-		Iterable<PlanetaEntity> iterable = planetaRepository.findAll();
+		
+		Iterable<PlanetaEntity> iterable = planetaRepository.findAllClasse(classeID);
 
 		iterable.forEach(planetaEntity -> {
 

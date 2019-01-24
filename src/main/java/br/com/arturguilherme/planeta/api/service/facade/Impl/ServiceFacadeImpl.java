@@ -34,8 +34,9 @@ public class ServiceFacadeImpl implements ServiceFacade {
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasClasse(String classeID) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return planetaService.listarPlanetasClasse(classeID);
+		
 	}
 
 	@Override

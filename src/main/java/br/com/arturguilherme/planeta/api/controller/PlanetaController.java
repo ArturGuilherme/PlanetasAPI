@@ -39,6 +39,25 @@ public class PlanetaController {
 
     }
     
+    @RequestMapping(value = "/listarPlaneta/classe/{id_classe}",produces = {"application/json"},method = RequestMethod.GET)
+    public ResponseEntity<?> listarTodosClasse(@PathVariable("id_classe") String id_classe){
+
+        List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+        
+        try {
+        
+        	planetas = serviceFacade.listarPlanetasClasse(id_classe);
+            return new ResponseEntity(planetas, HttpStatus.OK);
+        
+        } catch (Exception ex) {
+        
+        	return new ResponseEntity(planetas, HttpStatus.INTERNAL_SERVER_ERROR);
+        
+        }
+
+    }
+    
+    
     @RequestMapping(value = "/listarPlaneta/{id}",produces = {"application/json"},method = RequestMethod.GET)
     public ResponseEntity<?> listarPlanetaId(@PathVariable("id") Integer idPlaneta){
 
