@@ -39,6 +39,80 @@ public class PlanetaController {
 
     }
     
+    @RequestMapping(value = "/listarPlaneta/atmosfera/{id_atmosfera}",produces = {"application/json"},method = RequestMethod.GET)
+    public ResponseEntity<?> listarTodosAtmosfera(@PathVariable("id_atmosfera") Integer id_atmosfera){
+
+        List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+        
+        try {
+        
+        	planetas = serviceFacade.listarPlanetasAtmosfera(id_atmosfera);
+            return new ResponseEntity(planetas, HttpStatus.OK);
+        
+        } catch (Exception ex) {
+        
+        	return new ResponseEntity(planetas, HttpStatus.INTERNAL_SERVER_ERROR);
+        
+        }
+
+    }
+    
+    @RequestMapping(value = "/listarPlaneta/quadrante/{id_quadrante}",produces = {"application/json"},method = RequestMethod.GET)
+    public ResponseEntity<?> listarTodosQuandrante(@PathVariable("id_quadrante") Integer id_quadrante){
+
+        List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+        
+        try {
+        
+        	planetas = serviceFacade.listarPlanetasQuadrante(id_quadrante);
+            return new ResponseEntity(planetas, HttpStatus.OK);
+        
+        } catch (Exception ex) {
+        
+        	return new ResponseEntity(planetas, HttpStatus.INTERNAL_SERVER_ERROR);
+        
+        }
+
+    }
+    
+    @RequestMapping(value = "/listarPlaneta/habitaveis",produces = {"application/json"},method = RequestMethod.GET)
+    public ResponseEntity<?> listarTodosHabitaveis(){
+
+        List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+        
+        try {
+        
+        	planetas = serviceFacade.listarPlanetasClasse("D");
+            return new ResponseEntity(planetas, HttpStatus.OK);
+        
+        } catch (Exception ex) {
+        
+        	return new ResponseEntity(planetas, HttpStatus.INTERNAL_SERVER_ERROR);
+        
+        }
+
+    }
+    
+
+    
+    @RequestMapping(value = "/listarPlaneta/massa/{massa}",produces = {"application/json"},method = RequestMethod.GET)
+    public ResponseEntity<?> listarTodosMassa(@PathVariable("massa") Integer massa){
+
+        List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+        
+        try {
+        
+        	planetas = serviceFacade.listarPlanetasMaiorMassa(massa);
+            return new ResponseEntity(planetas, HttpStatus.OK);
+        
+        } catch (Exception ex) {
+        
+        	return new ResponseEntity(planetas, HttpStatus.INTERNAL_SERVER_ERROR);
+        
+        }
+
+    }
+    
     @RequestMapping(value = "/listarPlaneta/classe/{id_classe}",produces = {"application/json"},method = RequestMethod.GET)
     public ResponseEntity<?> listarTodosClasse(@PathVariable("id_classe") String id_classe){
 
@@ -57,31 +131,5 @@ public class PlanetaController {
 
     }
     
-    
-    @RequestMapping(value = "/listarPlaneta/{id}",produces = {"application/json"},method = RequestMethod.GET)
-    public ResponseEntity<?> listarPlanetaId(@PathVariable("id") Integer idPlaneta){
-
-        
-        try {
-           
-        	PlanetaDTO planeta = serviceFacade.listarPlanetaId(idPlaneta);
-           
-           if(planeta == null) {
-        	
-        	   return new ResponseEntity(planeta, HttpStatus.NOT_FOUND);
-        	   
-           }else {
-        	
-        	   return new ResponseEntity(planeta, HttpStatus.OK);
-        	   
-           }
-              
-        } catch (Exception ex) {
-        	
-            return new ResponseEntity(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        
-
-    }
 
 }

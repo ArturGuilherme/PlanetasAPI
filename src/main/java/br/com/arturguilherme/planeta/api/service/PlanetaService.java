@@ -13,6 +13,8 @@ public interface PlanetaService {
 	
 	public List<PlanetaDTO> listarPlanetasClasse(String classeID) throws Exception;
 	
+	public List<PlanetaDTO> listarPlanetasQuadrante(Integer quadranteId) throws Exception;
+	
 	public List<PlanetaDTO> listarPlanetasAtmosfera(Integer ID) throws Exception;
 	
 	public List<PlanetaDTO> listarPlanetasHabitaveis() throws Exception;

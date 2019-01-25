@@ -41,50 +41,64 @@ public class ServiceFacadeImpl implements ServiceFacade {
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasAtmosfera(Integer ID) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return planetaService.listarPlanetasAtmosfera(ID);
+	
 	}
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasHabitaveis() throws Exception {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasData(Date dataInicio, Date dataFim) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return planetaService.listarPlanetasData(dataInicio, dataFim);
 	}
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasMaiorMassa(Integer massaMinima) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return planetaService.listarPlanetasMaiorMassa(massaMinima);
+	
 	}
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasDiametro(Integer minima, Integer maxima) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return planetaService.listarPlanetasDiametro(minima, maxima);
+	
 	}
 
 	@Override
 	public List<PlanetaDTO> incluirPlaneta(PlanetaDTO planetaDTO) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return null;
+	
 	}
 
 	@Override
 	public List<PlanetaDTO> atualizarPlaneta(PlanetaDTO planetaDTO) throws Exception {
-		// TODO Auto-generated method stub
+	
 		return null;
+	
 	}
 
 	@Override
 	public List<PlanetaDTO> excluirPlaneta(Integer id) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return null;
+	
+	}
+
+	@Override
+	public List<PlanetaDTO> listarPlanetasQuadrante(Integer id) throws Exception {
+		
+		return planetaService.listarPlanetasQuadrante(id);
+	
 	}
 
 }

@@ -19,6 +19,7 @@ public class PlanetaServiceImpl implements PlanetaService {
 	@Autowired
 	private PlanetaRepository planetaRepository;
 
+	// Listagem de todos os planetas
 	@Override
 	public List<PlanetaDTO> listarTodosPlanetas() throws Exception {
 
@@ -46,6 +47,7 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 	}
 
+	// Listagem de apenas um planeta por ID
 	@Override
 	public PlanetaDTO listarPlanetaId(Integer id) throws Exception {
 
@@ -66,14 +68,12 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 	}
 
+	// Listagem dos planetas por classe
 	@Override
 	public List<PlanetaDTO> listarPlanetasClasse(String classeID) throws Exception {
-		
+
 		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
-		
-		PlanetaDTO teste = new PlanetaDTO();
-		
-		
+
 		Iterable<PlanetaEntity> iterable = planetaRepository.findAllClasse(classeID);
 
 		iterable.forEach(planetaEntity -> {
@@ -96,10 +96,32 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 	}
 
+	//Lista de planetas por atmosfera
 	@Override
 	public List<PlanetaDTO> listarPlanetasAtmosfera(Integer ID) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+
+		Iterable<PlanetaEntity> iterable = planetaRepository.findAllAtmofera(ID);
+
+		iterable.forEach(planetaEntity -> {
+
+			PlanetaDTO planetaDTO = new PlanetaDTO();
+
+			planetaDTO.setId(planetaEntity.getIdPlaneta());
+			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
+			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
+			planetaDTO.setData(planetaEntity.getDataDescobrimento());
+			planetaDTO.setDiamentro(planetaEntity.getDiametro());
+			planetaDTO.setNome(planetaEntity.getNome());
+			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
+			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
+
+			planetas.add(planetaDTO);
+		});
+
+		return planetas;
+
 	}
 
 	@Override
@@ -110,20 +132,83 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasData(Date dataInicio, Date dataFim) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+
+		Iterable<PlanetaEntity> iterable = planetaRepository.findAllData(dataInicio, dataFim);
+
+		iterable.forEach(planetaEntity -> {
+
+			PlanetaDTO planetaDTO = new PlanetaDTO();
+
+			planetaDTO.setId(planetaEntity.getIdPlaneta());
+			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
+			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
+			planetaDTO.setData(planetaEntity.getDataDescobrimento());
+			planetaDTO.setDiamentro(planetaEntity.getDiametro());
+			planetaDTO.setNome(planetaEntity.getNome());
+			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
+			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
+
+			planetas.add(planetaDTO);
+		});
+
+		return planetas;
+
 	}
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasMaiorMassa(Integer massaMinima) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+
+		Iterable<PlanetaEntity> iterable = planetaRepository.findAllMassa(massaMinima);
+
+		iterable.forEach(planetaEntity -> {
+
+			PlanetaDTO planetaDTO = new PlanetaDTO();
+
+			planetaDTO.setId(planetaEntity.getIdPlaneta());
+			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
+			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
+			planetaDTO.setData(planetaEntity.getDataDescobrimento());
+			planetaDTO.setDiamentro(planetaEntity.getDiametro());
+			planetaDTO.setNome(planetaEntity.getNome());
+			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
+			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
+
+			planetas.add(planetaDTO);
+		});
+
+		return planetas;
+
 	}
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasDiametro(Integer minima, Integer maxima) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+
+		Iterable<PlanetaEntity> iterable = planetaRepository.findAllDiametro(minima, maxima);
+
+		iterable.forEach(planetaEntity -> {
+
+			PlanetaDTO planetaDTO = new PlanetaDTO();
+
+			planetaDTO.setId(planetaEntity.getIdPlaneta());
+			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
+			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
+			planetaDTO.setData(planetaEntity.getDataDescobrimento());
+			planetaDTO.setDiamentro(planetaEntity.getDiametro());
+			planetaDTO.setNome(planetaEntity.getNome());
+			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
+			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
+
+			planetas.add(planetaDTO);
+		});
+
+		return planetas;
+
 	}
 
 	@Override
@@ -142,6 +227,32 @@ public class PlanetaServiceImpl implements PlanetaService {
 	public List<PlanetaDTO> excluirPlaneta(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<PlanetaDTO> listarPlanetasQuadrante(Integer quadranteId) throws Exception {
+		
+		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+
+		Iterable<PlanetaEntity> iterable = planetaRepository.findAllQuadrante(quadranteId);
+
+		iterable.forEach(planetaEntity -> {
+
+			PlanetaDTO planetaDTO = new PlanetaDTO();
+
+			planetaDTO.setId(planetaEntity.getIdPlaneta());
+			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
+			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
+			planetaDTO.setData(planetaEntity.getDataDescobrimento());
+			planetaDTO.setDiamentro(planetaEntity.getDiametro());
+			planetaDTO.setNome(planetaEntity.getNome());
+			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
+			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
+
+			planetas.add(planetaDTO);
+		});
+
+		return planetas;
 	}
 
 }
