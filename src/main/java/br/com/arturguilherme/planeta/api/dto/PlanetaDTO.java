@@ -12,6 +12,7 @@ public class PlanetaDTO {
     private boolean colonizado;
     private Date data;
     private int quadrante;
+    private int massa;
 
     public int getId() {
         return id;
@@ -27,14 +28,6 @@ public class PlanetaDTO {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getDiamentro() {
-        return diametro;
-    }
-
-    public void setDiamentro(int diamentro) {
-        this.diametro = diamentro;
     }
 
     public String getClasse() {
@@ -76,4 +69,22 @@ public class PlanetaDTO {
     public void setQuadrante(int quadrante) {
         this.quadrante = quadrante;
     }
+
+	public int getDiametro() {
+		return diametro;
+	}
+
+	public void setDiametro(int diametro) {
+		this.diametro = diametro;
+	}
+
+	public int getMassa() {
+		return massa;
+	}
+
+	public void setMassa(int massa) {
+		this.massa = massa;
+	}
+    
+    
 }

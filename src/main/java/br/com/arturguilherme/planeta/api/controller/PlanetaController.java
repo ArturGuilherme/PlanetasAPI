@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class PlanetaController {
     @Autowired
     private ServiceFacade serviceFacade;
     
-    
+    // *** Listagem de todos os planetas
     @RequestMapping(value = "/listar",produces = {"application/json"},method = RequestMethod.GET)
     public ResponseEntity<?> listarTodos(){
 
@@ -39,6 +40,7 @@ public class PlanetaController {
 
     }
     
+    //listagem dos planetas por tipo atmosfera
     @RequestMapping(value = "/listarPlaneta/atmosfera/{id_atmosfera}",produces = {"application/json"},method = RequestMethod.GET)
     public ResponseEntity<?> listarTodosAtmosfera(@PathVariable("id_atmosfera") Integer id_atmosfera){
 
@@ -57,6 +59,7 @@ public class PlanetaController {
 
     }
     
+    //listagem dos planentas por quadrante
     @RequestMapping(value = "/listarPlaneta/quadrante/{id_quadrante}",produces = {"application/json"},method = RequestMethod.GET)
     public ResponseEntity<?> listarTodosQuandrante(@PathVariable("id_quadrante") Integer id_quadrante){
 
@@ -75,6 +78,7 @@ public class PlanetaController {
 
     }
     
+    //listagem dos plantas por classe, só que dessa vez apenas tipo D
     @RequestMapping(value = "/listarPlaneta/habitaveis",produces = {"application/json"},method = RequestMethod.GET)
     public ResponseEntity<?> listarTodosHabitaveis(){
 
@@ -94,7 +98,7 @@ public class PlanetaController {
     }
     
 
-    
+    //listagem dos planetas por massa minima
     @RequestMapping(value = "/listarPlaneta/massa/{massa}",produces = {"application/json"},method = RequestMethod.GET)
     public ResponseEntity<?> listarTodosMassa(@PathVariable("massa") Integer massa){
 
@@ -113,6 +117,7 @@ public class PlanetaController {
 
     }
     
+    //listagem dos planetas por classe
     @RequestMapping(value = "/listarPlaneta/classe/{id_classe}",produces = {"application/json"},method = RequestMethod.GET)
     public ResponseEntity<?> listarTodosClasse(@PathVariable("id_classe") String id_classe){
 
@@ -131,5 +136,43 @@ public class PlanetaController {
 
     }
     
+    //listagem dos planetas por data
+    @RequestMapping(value = "/listarPlaneta/diametro/{minima}/{maxima}",produces = {"application/json"},method = RequestMethod.GET)
+    public ResponseEntity<?> listarTodosDiametro(@PathVariable("minima") Integer minima,@PathVariable("maxima") Integer maxima){
+
+        List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+        
+        try {
+        
+        	planetas = serviceFacade.listarPlanetasDiametro(minima, maxima);
+            return new ResponseEntity(planetas, HttpStatus.OK);
+        
+        } catch (Exception ex) {
+        
+        	return new ResponseEntity(planetas, HttpStatus.INTERNAL_SERVER_ERROR);
+        
+        }
+
+    }
+    
+
+  //listagem dos planetas por intervalo de diameamtro
+    @RequestMapping(value = "/listarPlaneta/descobrimento/{dataInicio}/{dataFim}",produces = {"application/json"},method = RequestMethod.GET)
+    public ResponseEntity<?> listarTodosData(@PathVariable("dataInicio") Date dataInicio,@PathVariable("dataFim") Date dataFim){
+
+        List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+        
+        try {
+        
+        	planetas = serviceFacade.listarPlanetasData(dataInicio,dataFim);
+            return new ResponseEntity(planetas, HttpStatus.OK);
+        
+        } catch (Exception ex) {
+        
+        	return new ResponseEntity(planetas, HttpStatus.INTERNAL_SERVER_ERROR);
+        
+        }
+
+    }
 
 }

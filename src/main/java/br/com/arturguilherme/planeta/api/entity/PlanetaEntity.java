@@ -102,6 +102,30 @@ public class PlanetaEntity implements Serializable {
 		return this.classePlanetaEntity;
 	}
 
+	public ClassePlanetaEntity getClassePlanetaEntity() {
+		return classePlanetaEntity;
+	}
+
+	public void setClassePlanetaEntity(ClassePlanetaEntity classePlanetaEntity) {
+		this.classePlanetaEntity = classePlanetaEntity;
+	}
+
+	public QuadranteEstelarEntity getQuadranteEstelarEntity() {
+		return quadranteEstelarEntity;
+	}
+
+	public void setQuadranteEstelarEntity(QuadranteEstelarEntity quadranteEstelarEntity) {
+		this.quadranteEstelarEntity = quadranteEstelarEntity;
+	}
+
+	public TipoAtmosferaEntity getTipoAtmosferaEntity() {
+		return tipoAtmosferaEntity;
+	}
+
+	public void setTipoAtmosferaEntity(TipoAtmosferaEntity tipoAtmosferaEntity) {
+		this.tipoAtmosferaEntity = tipoAtmosferaEntity;
+	}
+
 	public void setClassePlaneta(ClassePlanetaEntity classePlanetaEntity) {
 		this.classePlanetaEntity = classePlanetaEntity;
 	}

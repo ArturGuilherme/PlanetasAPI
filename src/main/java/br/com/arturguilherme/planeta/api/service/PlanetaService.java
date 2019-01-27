@@ -25,7 +25,7 @@ public interface PlanetaService {
 	
 	public List<PlanetaDTO> listarPlanetasDiametro(Integer minima,Integer maxima) throws Exception;
 	
-	public List<PlanetaDTO> incluirPlaneta(PlanetaDTO planetaDTO) throws Exception;
+	public int incluirPlaneta(PlanetaDTO planetaDTO) throws Exception;
 	
 	public List<PlanetaDTO> atualizarPlaneta(PlanetaDTO planetaDTO) throws Exception;
 	

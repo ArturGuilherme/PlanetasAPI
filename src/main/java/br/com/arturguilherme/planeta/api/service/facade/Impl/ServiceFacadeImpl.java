@@ -19,7 +19,7 @@ public class ServiceFacadeImpl implements ServiceFacade {
 	@Autowired
 	private PlanetaService planetaService;
 
-		@Override
+	@Override
 	public List<PlanetaDTO> listarTodosPlanetas() throws Exception {
 		
 		 return planetaService.listarTodosPlanetas();
@@ -74,9 +74,9 @@ public class ServiceFacadeImpl implements ServiceFacade {
 	}
 
 	@Override
-	public List<PlanetaDTO> incluirPlaneta(PlanetaDTO planetaDTO) throws Exception {
+	public int incluirPlaneta(PlanetaDTO planetaDTO) throws Exception {
 		
-		return null;
+		return planetaService.incluirPlaneta(planetaDTO);
 	
 	}
 
