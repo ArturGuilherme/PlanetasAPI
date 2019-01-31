@@ -29,6 +29,6 @@ public interface ServiceFacade {
 	
 	public List<PlanetaDTO> atualizarPlaneta(PlanetaDTO planetaDTO) throws Exception;
 	
-	public List<PlanetaDTO> excluirPlaneta(Integer id) throws Exception;
+	public void excluirPlaneta(Integer id) throws Exception;
 	
 }

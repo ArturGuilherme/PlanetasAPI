@@ -1,7 +1,8 @@
-package br.com.arturguilherme.planeta.api.service.impl;
+	package br.com.arturguilherme.planeta.api.service.impl;
 
 import br.com.arturguilherme.planeta.api.dto.PlanetaDTO;
 import br.com.arturguilherme.planeta.api.entity.PlanetaEntity;
+import br.com.arturguilherme.planeta.api.exception.PlanetaNaoEncontradoException;
 import br.com.arturguilherme.planeta.api.repository.PlanetaRepository;
 import br.com.arturguilherme.planeta.api.service.PlanetaService;
 
@@ -225,6 +226,14 @@ public class PlanetaServiceImpl implements PlanetaService {
 		planateEntity.setMassa(planetaDTO.getMassa());
 		planateEntity.setPlanetaColonizado(planetaDTO.isColonizado());
 		
+		if(planetaDTO.getId()!=0) {
+			
+			Optional<PlanetaEntity> opt = planetaRepository.findById(planetaDTO.getId());
+			if ( ! opt.isPresent()) throw new PlanetaNaoEncontradoException("cliente não encontrado");
+			planateEntity.setIdPlaneta(planetaDTO.getId());
+
+		}
+		
 		PlanetaEntity planetaSalvo = planetaRepository.save(planateEntity);
 
 		return planetaSalvo.getIdPlaneta();
@@ -238,9 +247,13 @@ public class PlanetaServiceImpl implements PlanetaService {
 	}
 
 	@Override
-	public List<PlanetaDTO> excluirPlaneta(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public void excluirPlaneta(Integer id) throws Exception {
+		
+		Optional<PlanetaEntity> opt = planetaRepository.findById(id);
+		if ( ! opt.isPresent() ) throw new PlanetaNaoEncontradoException("cliente não encontrado");
+		
+		planetaRepository.delete(opt.get());
+		
 	}
 
 	// listagem dos planetas por quadrante

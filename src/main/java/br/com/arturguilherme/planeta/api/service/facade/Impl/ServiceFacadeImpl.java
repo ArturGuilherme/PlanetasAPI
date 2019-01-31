@@ -88,9 +88,9 @@ public class ServiceFacadeImpl implements ServiceFacade {
 	}
 
 	@Override
-	public List<PlanetaDTO> excluirPlaneta(Integer id) throws Exception {
-		
-		return null;
+	public void excluirPlaneta(Integer id) throws Exception {
+	
+		planetaService.excluirPlaneta(id);
 	
 	}
 
