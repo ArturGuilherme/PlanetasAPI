@@ -4,22 +4,22 @@ import java.util.Date;
 
 public class PlanetaDTO {
 
-    private int id;
+    private int id_planeta;
     private String nome;
     private int diametro;
-    private String classe;
-    private int tipoAtmo;
-    private boolean colonizado;
-    private Date data;
-    private int quadrante;
+    private String id_classe;
+    private int id_tipo_atmosfera;
+    private boolean planeta_colonizado;
+    private Date data_descobrimento;
+    private int id_quadrante;
     private int massa;
 
     public int getId() {
-        return id;
+        return id_planeta;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_planeta = id;
     }
 
     public String getNome() {
@@ -31,43 +31,43 @@ public class PlanetaDTO {
     }
 
     public String getClasse() {
-        return classe;
+        return id_classe;
     }
 
     public void setClasse(String classe) {
-        this.classe = classe;
+        this.id_classe = classe;
     }
 
     public int getTipoAtmo() {
-        return tipoAtmo;
+        return id_tipo_atmosfera;
     }
 
     public void setTipoAtmo(int tipoAtmo) {
-        this.tipoAtmo = tipoAtmo;
+        this.id_tipo_atmosfera = tipoAtmo;
     }
 
     public boolean isColonizado() {
-        return colonizado;
+        return planeta_colonizado;
     }
 
     public void setColonizado(boolean colonizado) {
-        this.colonizado = colonizado;
+        this.planeta_colonizado = colonizado;
     }
 
     public Date getData() {
-        return data;
+        return data_descobrimento;
     }
 
     public void setData(Date data) {
-        this.data = data;
+        this.data_descobrimento = data;
     }
 
     public int getQuadrante() {
-        return quadrante;
+        return id_quadrante;
     }
 
     public void setQuadrante(int quadrante) {
-        this.quadrante = quadrante;
+        this.id_quadrante = quadrante;
     }
 
 	public int getDiametro() {

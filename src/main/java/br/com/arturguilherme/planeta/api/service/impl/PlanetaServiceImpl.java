@@ -1,9 +1,14 @@
 	package br.com.arturguilherme.planeta.api.service.impl;
 
 import br.com.arturguilherme.planeta.api.dto.PlanetaDTO;
+import br.com.arturguilherme.planeta.api.entity.ClassePlanetaEntity;
 import br.com.arturguilherme.planeta.api.entity.PlanetaEntity;
+import br.com.arturguilherme.planeta.api.entity.TipoAtmosferaEntity;
 import br.com.arturguilherme.planeta.api.exception.PlanetaNaoEncontradoException;
+import br.com.arturguilherme.planeta.api.repository.AtmosferaRepository;
+import br.com.arturguilherme.planeta.api.repository.ClasseRepository;
 import br.com.arturguilherme.planeta.api.repository.PlanetaRepository;
+import br.com.arturguilherme.planeta.api.repository.QuadranteRepository;
 import br.com.arturguilherme.planeta.api.service.PlanetaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,125 +24,83 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 	@Autowired
 	private PlanetaRepository planetaRepository;
-
+	private ClasseRepository classeRepository;
+	private QuadranteRepository quadranteRepository;
+	private AtmosferaRepository atmosferaRepository;
+	
 	// Listagem de todos os planetas
 	@Override
-	public List<PlanetaDTO> listarTodosPlanetas() throws Exception {
+	public List<PlanetaEntity> listarTodosPlanetas() throws Exception {
 
-		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+		List<PlanetaEntity> planetas = new ArrayList<PlanetaEntity>();
 
 		Iterable<PlanetaEntity> iterable = planetaRepository.findAll();
 
-		iterable.forEach(planetaEntity -> {
-
-			PlanetaDTO planetaDTO = new PlanetaDTO();
-
-			planetaDTO.setId(planetaEntity.getIdPlaneta());
-			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
-			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
-			planetaDTO.setData(planetaEntity.getDataDescobrimento());
-			planetaDTO.setDiametro(planetaEntity.getDiametro());
-			planetaDTO.setNome(planetaEntity.getNome());
-			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
-			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
-
-			planetas.add(planetaDTO);
-		});
-
+		iterable.iterator().forEachRemaining(planetas::add);
+		
 		return planetas;
 
 	}
 
 	// Listagem de apenas um planeta por ID
 	@Override
-	public PlanetaDTO listarPlanetaId(Integer id) throws Exception {
+	public PlanetaEntity listarPlanetaId(Integer id) throws Exception {
+		
+		PlanetaEntity planeta = new PlanetaEntity();
 
 		Optional<PlanetaEntity> planetaEntity = planetaRepository.findById(id);
+		
+		planetaEntity
 
-		PlanetaDTO planetaDTO = new PlanetaDTO();
-
-		planetaDTO.setId(planetaEntity.get().getIdPlaneta());
-		planetaDTO.setClasse(planetaEntity.get().getClassePlaneta().getIdClasse());
-		planetaDTO.setColonizado(planetaEntity.get().getPlanetaColonizado());
-		planetaDTO.setData(planetaEntity.get().getDataDescobrimento());
-		planetaDTO.setDiametro(planetaEntity.get().getDiametro());
-		planetaDTO.setNome(planetaEntity.get().getNome());
-		planetaDTO.setQuadrante(planetaEntity.get().getQuadranteEstelar().getIdQuadrante());
-		planetaDTO.setTipoAtmo(planetaEntity.get().getTipoAtmosfera().getIdTipoAtmosfera());
-
-		return planetaDTO;
+		return planetaEntity;
 
 	}
 
 	// Listagem dos planetas por classe
 	@Override
-	public List<PlanetaDTO> listarPlanetasClasse(String classeID) throws Exception {
+	public List<PlanetaEntity> listarPlanetasClasse(String classeID) throws Exception {
 
-		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+		List<PlanetaEntity> planetas = new ArrayList<PlanetaEntity>();
+		
+		Optional<ClassePlanetaEntity> optional_classe = classeRepository.findById(classeID);
 
-		Iterable<PlanetaEntity> iterable = planetaRepository.findAllClasse(classeID);
+		Iterable<PlanetaEntity> iterable = planetaRepository.findById_classe(optional_classe.get());
 
-		iterable.forEach(planetaEntity -> {
-
-			PlanetaDTO planetaDTO = new PlanetaDTO();
-
-			planetaDTO.setId(planetaEntity.getIdPlaneta());
-			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
-			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
-			planetaDTO.setData(planetaEntity.getDataDescobrimento());
-			planetaDTO.setDiametro(planetaEntity.getDiametro());
-			planetaDTO.setNome(planetaEntity.getNome());
-			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
-			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
-
-			planetas.add(planetaDTO);
-		});
-
+		iterable.iterator().forEachRemaining(planetas::add);
+		
 		return planetas;
 
 	}
 
 	// Lista de planetas por atmosfera
 	@Override
-	public List<PlanetaDTO> listarPlanetasAtmosfera(Integer ID) throws Exception {
+	public List<PlanetaEntity> listarPlanetasAtmosfera(Integer ID) throws Exception {
 
-		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+		List<PlanetaEntity> planetas = new ArrayList<PlanetaEntity>();
+		
+		Optional<TipoAtmosferaEntity> optional_atmosfera = atmosferaRepository.findById(ID);
 
-		Iterable<PlanetaEntity> iterable = planetaRepository.findAllAtmofera(ID);
+		Iterable<PlanetaEntity> iterable = planetaRepository.findById_tipo_atmosfera(optional_atmosfera.get());
 
-		iterable.forEach(planetaEntity -> {
-
-			PlanetaDTO planetaDTO = new PlanetaDTO();
-
-			planetaDTO.setId(planetaEntity.getIdPlaneta());
-			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
-			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
-			planetaDTO.setData(planetaEntity.getDataDescobrimento());
-			planetaDTO.setDiametro(planetaEntity.getDiametro());
-			planetaDTO.setNome(planetaEntity.getNome());
-			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
-			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
-
-			planetas.add(planetaDTO);
-		});
-
+		iterable.iterator().forEachRemaining(planetas::add);
+		
 		return planetas;
 
 	}
 
 	@Override
-	public List<PlanetaDTO> listarPlanetasHabitaveis() throws Exception {
+	public List<PlanetaEntity> listarPlanetasHabitaveis() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	// listagem dos planetas por um intervalo de data
 	@Override
-	public List<PlanetaDTO> listarPlanetasData(Date dataInicio, Date dataFim) throws Exception {
+	public List<PlanetaEntity> listarPlanetasData(Date dataInicio, Date dataFim) throws Exception {
 
 		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
 
-		Iterable<PlanetaEntity> iterable = planetaRepository.findAllData(dataInicio, dataFim);
+		Iterable<PlanetaEntity> iterable = planetaRepository.findByData_descobrimentoBetween(dataInicio, dataFim);
 
 		iterable.forEach(planetaEntity -> {
 
@@ -161,11 +124,11 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 	// listagem dos planetas por massa minima
 	@Override
-	public List<PlanetaDTO> listarPlanetasMaiorMassa(Integer massaMinima) throws Exception {
+	public List<PlanetaEntity> listarPlanetasMaiorMassa(Integer massaMinima) throws Exception {
 
 		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
 
-		Iterable<PlanetaEntity> iterable = planetaRepository.findAllMassa(massaMinima);
+		Iterable<PlanetaEntity> iterable = planetaRepository.findByMassaGreaterThan(massaMinima);
 
 		iterable.forEach(planetaEntity -> {
 
@@ -189,11 +152,11 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 	// listagem dis planetas por intervalo de diametro
 	@Override
-	public List<PlanetaDTO> listarPlanetasDiametro(Integer minima, Integer maxima) throws Exception {
+	public List<PlanetaEntity> listarPlanetasDiametro(Integer minima, Integer maxima) throws Exception {
 
 		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
 
-		Iterable<PlanetaEntity> iterable = planetaRepository.findAllDiametro(minima, maxima);
+		Iterable<PlanetaEntity> iterable = planetaRepository.findByDiametroBetween(minima, maxima);
 
 		iterable.forEach(planetaEntity -> {
 
@@ -213,6 +176,33 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 		return planetas;
 
+	}
+	
+	// listagem dos planetas por quadrante
+	@Override
+	public List<PlanetaEntity> listarPlanetasQuadrante(Integer quadranteId) throws Exception {
+
+		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+
+		Iterable<PlanetaEntity> iterable = planetaRepository.findById_quadrante(quadranteId);
+
+		iterable.forEach(planetaEntity -> {
+
+			PlanetaDTO planetaDTO = new PlanetaDTO();
+
+			planetaDTO.setId(planetaEntity.getIdPlaneta());
+			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
+			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
+			planetaDTO.setData(planetaEntity.getDataDescobrimento());
+			planetaDTO.setDiametro(planetaEntity.getDiametro());
+			planetaDTO.setNome(planetaEntity.getNome());
+			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
+			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
+
+			planetas.add(planetaDTO);
+		});
+
+		return planetas;
 	}
 
 	@Override
@@ -254,33 +244,6 @@ public class PlanetaServiceImpl implements PlanetaService {
 		
 		planetaRepository.delete(opt.get());
 		
-	}
-
-	// listagem dos planetas por quadrante
-	@Override
-	public List<PlanetaDTO> listarPlanetasQuadrante(Integer quadranteId) throws Exception {
-
-		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
-
-		Iterable<PlanetaEntity> iterable = planetaRepository.findAllQuadrante(quadranteId);
-
-		iterable.forEach(planetaEntity -> {
-
-			PlanetaDTO planetaDTO = new PlanetaDTO();
-
-			planetaDTO.setId(planetaEntity.getIdPlaneta());
-			planetaDTO.setClasse(planetaEntity.getClassePlaneta().getIdClasse());
-			planetaDTO.setColonizado(planetaEntity.getPlanetaColonizado());
-			planetaDTO.setData(planetaEntity.getDataDescobrimento());
-			planetaDTO.setDiametro(planetaEntity.getDiametro());
-			planetaDTO.setNome(planetaEntity.getNome());
-			planetaDTO.setQuadrante(planetaEntity.getQuadranteEstelar().getIdQuadrante());
-			planetaDTO.setTipoAtmo(planetaEntity.getTipoAtmosfera().getIdTipoAtmosfera());
-
-			planetas.add(planetaDTO);
-		});
-
-		return planetas;
 	}
 
 }

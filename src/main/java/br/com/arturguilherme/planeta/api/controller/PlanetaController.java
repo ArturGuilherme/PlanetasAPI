@@ -33,7 +33,7 @@ public class PlanetaController {
 		try {
 
 			planetas = serviceFacade.listarTodosPlanetas();
-			return new ResponseEntity(planetas, HttpStatus.OK);
+			return new ResponseEntity(planetas, HttpStatus.OK); 
 
 		} catch (Exception ex) {
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.arturguilherme.planeta.api.dto.PlanetaDTO;
+import br.com.arturguilherme.planeta.api.entity.PlanetaEntity;
 import br.com.arturguilherme.planeta.api.service.PlanetaService;
 import br.com.arturguilherme.planeta.api.service.facade.ServiceFacade;
 
@@ -20,58 +21,66 @@ public class ServiceFacadeImpl implements ServiceFacade {
 	private PlanetaService planetaService;
 
 	@Override
-	public List<PlanetaDTO> listarTodosPlanetas() throws Exception {
+	public List<PlanetaEntity> listarTodosPlanetas() throws Exception {
 		
 		 return planetaService.listarTodosPlanetas();
 
 	}
 
 	@Override
-	public PlanetaDTO listarPlanetaId(Integer id) throws Exception {
+	public PlanetaEntity listarPlanetaId(Integer id) throws Exception {
 		
 		return planetaService.listarPlanetaId(id);
 	}
 
 	@Override
-	public List<PlanetaDTO> listarPlanetasClasse(String classeID) throws Exception {
+	public List<PlanetaEntity> listarPlanetasClasse(String classeID) throws Exception {
 		
 		return planetaService.listarPlanetasClasse(classeID);
 		
 	}
 
 	@Override
-	public List<PlanetaDTO> listarPlanetasAtmosfera(Integer ID) throws Exception {
+	public List<PlanetaEntity> listarPlanetasAtmosfera(Integer ID) throws Exception {
 		
 		return planetaService.listarPlanetasAtmosfera(ID);
 	
 	}
 
 	@Override
-	public List<PlanetaDTO> listarPlanetasHabitaveis() throws Exception {
+	public List<PlanetaEntity> listarPlanetasHabitaveis() throws Exception {
 		
 		return null;
 	}
 
 	@Override
-	public List<PlanetaDTO> listarPlanetasData(Date dataInicio, Date dataFim) throws Exception {
+	public List<PlanetaEntity> listarPlanetasData(Date dataInicio, Date dataFim) throws Exception {
 		
 		return planetaService.listarPlanetasData(dataInicio, dataFim);
 	}
 
 	@Override
-	public List<PlanetaDTO> listarPlanetasMaiorMassa(Integer massaMinima) throws Exception {
+	public List<PlanetaEntity> listarPlanetasMaiorMassa(Integer massaMinima) throws Exception {
 		
 		return planetaService.listarPlanetasMaiorMassa(massaMinima);
 	
 	}
 
 	@Override
-	public List<PlanetaDTO> listarPlanetasDiametro(Integer minima, Integer maxima) throws Exception {
+	public List<PlanetaEntity> listarPlanetasDiametro(Integer minima, Integer maxima) throws Exception {
 		
 		
 		return planetaService.listarPlanetasDiametro(minima, maxima);
 	
 	}
+	
+	@Override
+	public List<PlanetaEntity> listarPlanetasQuadrante(Integer id) throws Exception {
+		
+		return planetaService.listarPlanetasQuadrante(id);
+	
+	}
+
 
 	@Override
 	public int incluirPlaneta(PlanetaDTO planetaDTO) throws Exception {
@@ -81,23 +90,9 @@ public class ServiceFacadeImpl implements ServiceFacade {
 	}
 
 	@Override
-	public List<PlanetaDTO> atualizarPlaneta(PlanetaDTO planetaDTO) throws Exception {
-	
-		return null;
-	
-	}
-
-	@Override
 	public void excluirPlaneta(Integer id) throws Exception {
 	
 		planetaService.excluirPlaneta(id);
-	
-	}
-
-	@Override
-	public List<PlanetaDTO> listarPlanetasQuadrante(Integer id) throws Exception {
-		
-		return planetaService.listarPlanetasQuadrante(id);
 	
 	}
 
