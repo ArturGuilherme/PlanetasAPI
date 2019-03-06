@@ -88,12 +88,6 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 	}
 
-	@Override
-	public List<PlanetaEntity> listarPlanetasHabitaveis() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	// listagem dos planetas por um intervalo de data
 	@Override
 	public List<PlanetaEntity> listarPlanetasData(Date dataInicio, Date dataFim) throws Exception {
