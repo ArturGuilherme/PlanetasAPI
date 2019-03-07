@@ -27,7 +27,6 @@ public class PlanetaServiceImpl implements PlanetaService {
 	private ClasseRepository classeRepository;
 	private QuadranteRepository quadranteRepository;
 	private AtmosferaRepository atmosferaRepository;
-	@TESTE@
 	
 	// Listagem de todos os planetas
 	@Override
@@ -51,7 +50,6 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 		Optional<PlanetaEntity> planetaEntity = planetaRepository.findById(id);
 		
-		planetaEntity
 
 		return planetaEntity;
 
