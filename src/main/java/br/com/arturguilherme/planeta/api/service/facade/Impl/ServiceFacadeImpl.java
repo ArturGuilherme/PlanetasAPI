@@ -31,6 +31,13 @@ public class ServiceFacadeImpl implements ServiceFacade {
 		PlanetaDTO planetaDTO = modelMapper.map(planetaEntity, PlanetaDTO.class);
 	    return planetaDTO;
 	}
+	
+	//Conversão do Entity para DTO
+	private PlanetaEntity convertToEntity(PlanetaDTO planetaDTO) {
+				PlanetaEntity planetaEntity = modelMapper.map(planetaDTO, PlanetaEntity.class);
+			    return planetaEntity;
+	}
+
 
 
 	@Override
@@ -43,22 +50,20 @@ public class ServiceFacadeImpl implements ServiceFacade {
 	}
 
 	@Override
-	public PlanetaDTO listarPlanetaId(Integer id) throws Exception {
-		
-		return planetaService.listarPlanetaId(id);
-	}
-
-	@Override
 	public List<PlanetaDTO> listarPlanetasClasse(String classeID) throws Exception {
 		
-		return planetaService.listarPlanetasClasse(classeID);
+		List<PlanetaEntity> planetas =  planetaService.listarPlanetasClasse(classeID);
+		
+		return planetas.stream().map(planetaEntity -> convertToDto(planetaEntity)).collect(Collectors.toList());
 		
 	}
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasAtmosfera(Integer ID) throws Exception {
 		
-		return planetaService.listarPlanetasAtmosfera(ID);
+		List<PlanetaEntity> planetas = planetaService.listarPlanetasAtmosfera(ID);
+	
+		return planetas.stream().map(planetaEntity -> convertToDto(planetaEntity)).collect(Collectors.toList());
 	
 	}
 
@@ -71,13 +76,18 @@ public class ServiceFacadeImpl implements ServiceFacade {
 	@Override
 	public List<PlanetaDTO> listarPlanetasData(Date dataInicio, Date dataFim) throws Exception {
 		
-		return planetaService.listarPlanetasData(dataInicio, dataFim);
+		List<PlanetaEntity> planetas =  planetaService.listarPlanetasData(dataInicio, dataFim);
+		
+		return planetas.stream().map(planetaEntity -> convertToDto(planetaEntity)).collect(Collectors.toList());
+		
 	}
 
 	@Override
 	public List<PlanetaDTO> listarPlanetasMaiorMassa(Integer massaMinima) throws Exception {
 		
-		return planetaService.listarPlanetasMaiorMassa(massaMinima);
+		List<PlanetaEntity> planetas =  planetaService.listarPlanetasMaiorMassa(massaMinima);
+		
+		return planetas.stream().map(planetaEntity -> convertToDto(planetaEntity)).collect(Collectors.toList());
 	
 	}
 
@@ -85,14 +95,18 @@ public class ServiceFacadeImpl implements ServiceFacade {
 	public List<PlanetaDTO> listarPlanetasDiametro(Integer minima, Integer maxima) throws Exception {
 		
 		
-		return planetaService.listarPlanetasDiametro(minima, maxima);
+		List<PlanetaEntity> planetas = planetaService.listarPlanetasDiametro(minima, maxima);
+		
+		return planetas.stream().map(planetaEntity -> convertToDto(planetaEntity)).collect(Collectors.toList());
 	
 	}
 	
 	@Override
 	public List<PlanetaDTO> listarPlanetasQuadrante(Integer id) throws Exception {
 		
-		return planetaService.listarPlanetasQuadrante(id);
+		List<PlanetaEntity> planetas = planetaService.listarPlanetasQuadrante(id);
+		
+		return planetas.stream().map(planetaEntity -> convertToDto(planetaEntity)).collect(Collectors.toList());
 	
 	}
 
@@ -100,7 +114,9 @@ public class ServiceFacadeImpl implements ServiceFacade {
 	@Override
 	public int incluirPlaneta(PlanetaDTO planetaDTO) throws Exception {
 		
-		return planetaService.incluirPlaneta(planetaDTO);
+		PlanetaEntity planetaEntity = convertToEntity(planetaDTO);
+		
+		return planetaService.incluirPlaneta(planetaEntity);
 	
 	}
 

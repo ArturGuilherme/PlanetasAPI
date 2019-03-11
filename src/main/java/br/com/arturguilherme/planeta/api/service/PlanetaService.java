@@ -10,8 +10,6 @@ public interface PlanetaService {
 
 	public List<PlanetaEntity> listarTodosPlanetas() throws Exception;
 	
-	public PlanetaEntity listarPlanetaId(Integer id)  throws Exception;
-	
 	public List<PlanetaEntity> listarPlanetasClasse(String classeID) throws Exception;
 	
 	public List<PlanetaEntity> listarPlanetasQuadrante(Integer quadranteId) throws Exception;

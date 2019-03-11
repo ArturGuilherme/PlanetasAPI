@@ -10,8 +10,6 @@ public interface ServiceFacade {
 	
 	public List<PlanetaDTO> listarTodosPlanetas() throws Exception;
 	
-	public PlanetaDTO listarPlanetaId(Integer id)  throws Exception;
-	
 	public List<PlanetaDTO> listarPlanetasQuadrante(Integer id)  throws Exception;
 	
 	public List<PlanetaDTO> listarPlanetasClasse(String classeID) throws Exception;

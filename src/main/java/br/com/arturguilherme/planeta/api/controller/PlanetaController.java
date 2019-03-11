@@ -7,6 +7,7 @@ import br.com.arturguilherme.planeta.api.exception.PlanetaNaoEncontradoException
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,7 @@ public class PlanetaController {
 	public ResponseEntity<?> listarTodos() {
 
 		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
-
+ 
 		try {
 
 			planetas = serviceFacade.listarTodosPlanetas();
@@ -83,7 +84,7 @@ public class PlanetaController {
 
 	}
 
-	// listagem dos plantas por classe, só que dessa vez apenas tipo D
+	// listagem dos plantas por classe, só que dessa vez apenas tipo D (Planetas Habitaveis)
 	@RequestMapping(value = "/listarPlaneta/habitaveis", produces = { "application/json" }, method = RequestMethod.GET)
 	public ResponseEntity<?> listarTodosHabitaveis() {
 
@@ -145,8 +146,7 @@ public class PlanetaController {
 	// listagem dos planetas por data
 	@RequestMapping(value = "/listarPlaneta/diametro/{minima}/{maxima}", produces = {
 			"application/json" }, method = RequestMethod.GET)
-	public ResponseEntity<?> listarTodosDiametro(@PathVariable("minima") Integer minima,
-			@PathVariable("maxima") Integer maxima) {
+	public ResponseEntity<?> listarTodosDiametro(@PathVariable("minima") Integer minima,@PathVariable("maxima") Integer maxima) {
 
 		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
 
@@ -184,7 +184,7 @@ public class PlanetaController {
 
 	}
 
-	// listagem dos planetas por intervalo de diameamtro
+	// incluir planeta
 	@RequestMapping(value = "/cadastrar/", produces = { "application/json" }, consumes = {
 			"application/json" }, method = RequestMethod.POST)
 	public ResponseEntity<?> cadastrarPlaneta(@RequestBody PlanetaDTO planeta) {
@@ -203,7 +203,7 @@ public class PlanetaController {
 
 	}
 
-	// listagem dos planetas por intervalo de diameamtro
+	// atualizar planeta
 	@RequestMapping(value = "/atualizar/", produces = { "application/json" }, consumes = {
 			"application/json" }, method = RequestMethod.POST)
 	public ResponseEntity<?> atualizarPlaneta(@RequestBody PlanetaDTO planeta) {
@@ -222,7 +222,9 @@ public class PlanetaController {
 
 	}
 
-	// listagem dos planetas por classe
+	// excluir planeta
+	@CrossOrigin
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/excluir/{id}", produces = { "application/json" }, method = RequestMethod.DELETE)
 	public ResponseEntity<?> excluirPlaneta(@PathVariable("id") Integer id) {
 
