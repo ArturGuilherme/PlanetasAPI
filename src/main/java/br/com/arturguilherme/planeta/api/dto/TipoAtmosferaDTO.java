@@ -8,7 +8,6 @@ public class TipoAtmosferaDTO {
 
 	private String descricao;
 	
-	private List<PlanetaDTO> planetas;
 
 	public int getIdTipoAtmosfera() {
 		return idTipoAtmosfera;
@@ -26,14 +25,5 @@ public class TipoAtmosferaDTO {
 		this.descricao = descricao;
 	}
 
-	public List<PlanetaDTO> getPlanetas() {
-		return planetas;
-	}
-
-	public void setPlanetas(List<PlanetaDTO> planetaDTO) {
-		this.planetas = planetaDTO;
-	}
-	
-	
 	
 }

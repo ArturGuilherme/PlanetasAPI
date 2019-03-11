@@ -7,8 +7,6 @@ public class ClassePlanetaDTO {
 	private String idClasse;
 
 	private String descricao;
-	
-	private List<PlanetaDTO> planetas;
 
 	public String getIdClasse() {
 		return idClasse;
@@ -24,14 +22,6 @@ public class ClassePlanetaDTO {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public List<PlanetaDTO> getPlanetas() {
-		return planetas;
-	}
-
-	public void setPlanetas(List<PlanetaDTO> planetaDTO) {
-		this.planetas = planetaDTO;
 	}
 	
 	

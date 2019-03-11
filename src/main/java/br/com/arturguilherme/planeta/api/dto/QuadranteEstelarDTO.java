@@ -9,7 +9,6 @@ public class QuadranteEstelarDTO {
 
 	private String descricao;
 	
-	private List<PlanetaDTO> planetas;
 
 	public int getIdQuadrante() {
 		return idQuadrante;
@@ -27,14 +26,4 @@ public class QuadranteEstelarDTO {
 		this.descricao = descricao;
 	}
 
-	public List<PlanetaDTO> getPlanetas() {
-		return planetas;
-	}
-
-	public void setPlanetas(List<PlanetaDTO> planetaDTO) {
-		this.planetas = planetaDTO;
-	}
-	
-	
-	
 }
