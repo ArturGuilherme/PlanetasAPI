@@ -9,6 +9,4 @@ import br.com.arturguilherme.planeta.api.entity.ClassePlanetaEntity;
 
 public interface ClasseRepository extends CrudRepository<ClassePlanetaEntity,String> {
 
-	public Optional<ClassePlanetaEntity> findByIdClasse(String idCodigo);
-	
 }

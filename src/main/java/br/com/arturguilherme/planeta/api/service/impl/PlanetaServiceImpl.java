@@ -1,6 +1,5 @@
 package br.com.arturguilherme.planeta.api.service.impl;
 
-import br.com.arturguilherme.planeta.api.dto.PlanetaDTO;
 import br.com.arturguilherme.planeta.api.entity.ClassePlanetaEntity;
 import br.com.arturguilherme.planeta.api.entity.PlanetaEntity;
 import br.com.arturguilherme.planeta.api.entity.QuadranteEstelarEntity;
@@ -25,8 +24,14 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 	@Autowired
 	private PlanetaRepository planetaRepository;
+	
+	@Autowired
 	private ClasseRepository classeRepository;
+	
+	@Autowired
 	private QuadranteRepository quadranteRepository;
+	
+	@Autowired
 	private AtmosferaRepository atmosferaRepository;
 
 	// Listagem de todos os planetas
@@ -51,7 +56,7 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 		Optional<ClassePlanetaEntity> optional_classe = classeRepository.findById(classeID);
 
-		Iterable<PlanetaEntity> iterable = planetaRepository.findByClassePlanetaEntity(optional_classe.get());
+		Iterable<PlanetaEntity> iterable = planetaRepository.findByClassePlaneta(optional_classe.get());
 
 		iterable.iterator().forEachRemaining(planetas::add);
 
@@ -67,7 +72,7 @@ public class PlanetaServiceImpl implements PlanetaService {
 
 		Optional<TipoAtmosferaEntity> optional_atmosfera = atmosferaRepository.findById(ID);
 
-		Iterable<PlanetaEntity> iterable = planetaRepository.findByTipoAtmosferaEntity(optional_atmosfera.get());
+		Iterable<PlanetaEntity> iterable = planetaRepository.findByTipoAtmosfera(optional_atmosfera.get());
 
 		iterable.iterator().forEachRemaining(planetas::add);
 
@@ -125,7 +130,7 @@ public class PlanetaServiceImpl implements PlanetaService {
 		
 		Optional<QuadranteEstelarEntity> optional_quadrante = quadranteRepository.findById(quadranteId);
 
-		Iterable<PlanetaEntity> iterable = planetaRepository.findByQuadranteEstelarEntity(optional_quadrante.get());
+		Iterable<PlanetaEntity> iterable = planetaRepository.findByQuadranteEstelar(optional_quadrante.get());
 
 		iterable.iterator().forEachRemaining(planetas::add);
 		

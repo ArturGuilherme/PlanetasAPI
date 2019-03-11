@@ -22,8 +22,8 @@ public class TipoAtmosferaEntity implements Serializable {
 	private String descricao;
 
 	//bi-directional many-to-one association to Planeta
-	@OneToMany(mappedBy="tipoAtmosferaEntity")
-	private List<PlanetaEntity> planetaEntities;
+	@OneToMany(mappedBy="tipoAtmosfera")
+	private List<PlanetaEntity> planetas;
 
 	public TipoAtmosferaEntity() {
 	}
@@ -45,11 +45,11 @@ public class TipoAtmosferaEntity implements Serializable {
 	}
 
 	public List<PlanetaEntity> getPlanetas() {
-		return this.planetaEntities;
+		return this.planetas;
 	}
 
 	public void setPlanetas(List<PlanetaEntity> planetaEntities) {
-		this.planetaEntities = planetaEntities;
+		this.planetas = planetaEntities;
 	}
 
 	public PlanetaEntity addPlaneta(PlanetaEntity planetaEntity) {

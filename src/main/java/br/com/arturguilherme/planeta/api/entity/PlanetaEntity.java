@@ -35,17 +35,17 @@ public class PlanetaEntity implements Serializable {
 	//bi-directional many-to-one association to ClassePlaneta
 	@ManyToOne
 	@JoinColumn(name="id_classe")
-	private ClassePlanetaEntity classePlanetaEntity;
+	private ClassePlanetaEntity classePlaneta;
 
 	//bi-directional many-to-one association to QuadranteEstelar
 	@ManyToOne
 	@JoinColumn(name="id_quadrante")
-	private QuadranteEstelarEntity quadranteEstelarEntity;
+	private QuadranteEstelarEntity quadranteEstelar;
 
 	//bi-directional many-to-one association to TipoAtmosfera
 	@ManyToOne
 	@JoinColumn(name="id_tipo_atmosfera")
-	private TipoAtmosferaEntity tipoAtmosferaEntity;
+	private TipoAtmosferaEntity tipoAtmosfera;
 
 	public PlanetaEntity() {
 	}
@@ -99,51 +99,51 @@ public class PlanetaEntity implements Serializable {
 	}
 
 	public ClassePlanetaEntity getClassePlaneta() {
-		return this.classePlanetaEntity;
+		return this.classePlaneta;
 	}
 
 	public ClassePlanetaEntity getClassePlanetaEntity() {
-		return classePlanetaEntity;
+		return classePlaneta;
 	}
 
 	public void setClassePlanetaEntity(ClassePlanetaEntity classePlanetaEntity) {
-		this.classePlanetaEntity = classePlanetaEntity;
+		this.classePlaneta = classePlanetaEntity;
 	}
 
 	public QuadranteEstelarEntity getQuadranteEstelarEntity() {
-		return quadranteEstelarEntity;
+		return quadranteEstelar;
 	}
 
 	public void setQuadranteEstelarEntity(QuadranteEstelarEntity quadranteEstelarEntity) {
-		this.quadranteEstelarEntity = quadranteEstelarEntity;
+		this.quadranteEstelar = quadranteEstelarEntity;
 	}
 
 	public TipoAtmosferaEntity getTipoAtmosferaEntity() {
-		return tipoAtmosferaEntity;
+		return tipoAtmosfera;
 	}
 
 	public void setTipoAtmosferaEntity(TipoAtmosferaEntity tipoAtmosferaEntity) {
-		this.tipoAtmosferaEntity = tipoAtmosferaEntity;
+		this.tipoAtmosfera = tipoAtmosferaEntity;
 	}
 
 	public void setClassePlaneta(ClassePlanetaEntity classePlanetaEntity) {
-		this.classePlanetaEntity = classePlanetaEntity;
+		this.classePlaneta = classePlanetaEntity;
 	}
 
 	public QuadranteEstelarEntity getQuadranteEstelar() {
-		return this.quadranteEstelarEntity;
+		return this.quadranteEstelar;
 	}
 
 	public void setQuadranteEstelar(QuadranteEstelarEntity quadranteEstelarEntity) {
-		this.quadranteEstelarEntity = quadranteEstelarEntity;
+		this.quadranteEstelar = quadranteEstelarEntity;
 	}
 
 	public TipoAtmosferaEntity getTipoAtmosfera() {
-		return this.tipoAtmosferaEntity;
+		return this.tipoAtmosfera;
 	}
 
 	public void setTipoAtmosfera(TipoAtmosferaEntity tipoAtmosferaEntity) {
-		this.tipoAtmosferaEntity = tipoAtmosferaEntity;
+		this.tipoAtmosfera = tipoAtmosferaEntity;
 	}
 
 }

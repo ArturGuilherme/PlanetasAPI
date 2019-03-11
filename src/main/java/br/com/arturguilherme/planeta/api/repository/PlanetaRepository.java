@@ -16,11 +16,11 @@ public interface PlanetaRepository extends CrudRepository<PlanetaEntity, Integer
 
 	public List<PlanetaEntity> findByPlanetaColonizado(boolean planeta_colonizado);
 	
-	public List<PlanetaEntity> findByQuadranteEstelarEntity(QuadranteEstelarEntity quadranteEstelarEntity);
+	public List<PlanetaEntity> findByQuadranteEstelar(QuadranteEstelarEntity quadranteEstelarEntity);
 	
-	public List<PlanetaEntity> findByClassePlanetaEntity(ClassePlanetaEntity classePlanetaEntity);
+	public List<PlanetaEntity> findByClassePlaneta(ClassePlanetaEntity classePlanetaEntity);
 	
-	public List<PlanetaEntity> findByTipoAtmosferaEntity(TipoAtmosferaEntity tipoAtmosferaEntity );
+	public List<PlanetaEntity> findByTipoAtmosfera(TipoAtmosferaEntity tipoAtmosferaEntity );
 	
 	public List<PlanetaEntity> findByMassaGreaterThan(int massa);
 	
