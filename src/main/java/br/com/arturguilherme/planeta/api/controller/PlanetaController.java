@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Formatter;
 
 @RestController
 @RequestMapping("/planeta")
@@ -166,14 +169,18 @@ public class PlanetaController {
 	// listagem dos planetas por intervalo de diameamtro
 	@RequestMapping(value = "/listarPlaneta/descobrimento/{dataInicio}/{dataFim}", produces = {
 			"application/json" }, method = RequestMethod.GET)
-	public ResponseEntity<?> listarTodosData(@PathVariable("dataInicio") Date dataInicio,
-			@PathVariable("dataFim") Date dataFim) {
+	public ResponseEntity<?> listarTodosData(@PathVariable("dataInicio") String dataInicio,@PathVariable("dataFim") String dataFim) throws ParseException {
 
 		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
+		
+		SimpleDateFormat format = new SimpleDateFormat("DD-MM-YYYY");
+		
+		Date datIni = format.parse(dataInicio);
+		Date datFim = format.parse(dataFim);
 
 		try {
 
-			planetas = serviceFacade.listarPlanetasData(dataInicio, dataFim);
+			planetas = serviceFacade.listarPlanetasData(datIni, datFim);
 			return new ResponseEntity(planetas, HttpStatus.OK);
 
 		} catch (Exception ex) {
