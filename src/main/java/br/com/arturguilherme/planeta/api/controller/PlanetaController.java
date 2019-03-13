@@ -173,7 +173,7 @@ public class PlanetaController {
 
 		List<PlanetaDTO> planetas = new ArrayList<PlanetaDTO>();
 		
-		SimpleDateFormat format = new SimpleDateFormat("DD-MM-YYYY");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date datIni = format.parse(dataInicio);
 		Date datFim = format.parse(dataFim);
@@ -199,8 +199,8 @@ public class PlanetaController {
 		try {
 
 			int id = serviceFacade.incluirPlaneta(planeta);
-			String response = "/listar";
-			return new ResponseEntity(response, HttpStatus.OK);
+			//String response = "/listar";
+			return new ResponseEntity(id, HttpStatus.OK);
 
 		} catch (PlanetaNaoEncontradoException cnex) {
 			return new ResponseEntity(null, HttpStatus.NOT_FOUND);
